@@ -1,0 +1,403 @@
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 90%;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #4f46e5;
+  color: white;
+}
+
+.user-profile {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.profilepic {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
+#nameofuser {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+#nameofuser:hover {
+  overflow: visible;
+}
+
+.main-content {
+  padding: 16px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.stat {
+  background-color: #f0f4ff;
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1;
+  margin: 10px;
+  min-width: 200px;
+}
+
+.habits,
+.weekly-progress {
+  margin-bottom: 24px;
+}
+
+.habit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+.habit .streak {
+  font-size: 0.9em;
+}
+
+.habit .streak.green {
+  color: #22c55e;
+}
+
+.habit .streak.yellow {
+  color: #eab308;
+}
+
+.habit .streak.red {
+  color: #ef4444;
+}
+
+.add-habit {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.week {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.day-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+}
+
+.day {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  margin-bottom: 5px;
+}
+
+.day.complete {
+  background-color: #22c55e;
+  color: white;
+}
+
+.day.partial {
+  background-color: #fde047;
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1000px;
+  }
+
+  .stats {
+    justify-content: space-evenly;
+  }
+
+  .habit {
+    justify-content: space-between;
+  }
+
+  .week {
+    justify-content: space-evenly;
+  }
+}
+
+/*  habit input section */
+.habit-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.habit-input input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #4f46e5;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.habit-input input:focus {
+  border-color: #3b82f6;
+}
+
+.habit-input button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.habit-input button:hover {
+  background-color: #4338ca;
+  transform: scale(1.05);
+}
+
+/* Delete button */
+.delete-habit {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.delete-habit:hover {
+  background-color: #dc2626;
+  transform: scale(1.1);
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup Content */
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.show-popup {
+  display: flex;
+}
+
+#user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-item {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Input and Create Button */
+.user-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.user-input input {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid #4f46e5;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.user-input button {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.user-input button:hover {
+  background-color: #4338ca;
+}
+
+.close-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.close-btn:hover {
+  background-color: #dc2626;
+}
+
+.forplaceholder::-webkit-input-placeholder {
+  color: #ff0000;
+}
+
+#line-chart:hover {
+  cursor: pointer;
+}
+
+/* Container for each habit's progress bar */
+.habit-progress-container {
+  margin: 20px 0;
+  padding: 2px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.habit-progress-container h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+  .container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .stats {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .stat {
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  .habit {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+  }
+
+  .week {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .day-container {
+    margin-bottom: 8px;
+  }
+
+  .habit-input input,
+  .habit-input button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .habit-progress-container {
+    padding: 10px;
+  }
+
+  .popup-content {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .user-input input,
+  .user-input button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .close-btn {
+    padding: 12px;
+    font-size: 12px;
+  }
+}

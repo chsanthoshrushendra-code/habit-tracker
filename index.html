@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker</title>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awsome icon  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- chart.js extention bar graph-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- apexcharts.js extention for line graph -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- progress bar extention -->
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>HabitTracker</h1>
+        <!-- profile -->
+        <div class="user-profile" onclick="togglePopup()">
+          <div id="nameofuser">Select User</div>
+          <!-- icon -->
+          <svg
+            class="profilepic"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+          >
+            <path
+              d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z"
+            />
+          </svg>
+        </div>
+      </header>
+
+      <!-- User Selection Popup -->
+      <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+          <h2>Select User</h2>
+          <ul id="user-list"></ul>
+          <div class="user-input">
+            <input
+              type="text"
+              id="new-username"
+              placeholder="Enter new user"
+              name="Email"
+            />
+            <button onclick="createUser()">Create</button>
+          </div>
+          <button class="close-btn" id="close-btn" onclick="togglePopup()">
+            Close
+          </button>
+        </div>
+      </div>
+
+      <main class="main-content">
+        <section class="habits">
+          <h2>Today's Habits</h2>
+          <button
+            class="add-habit"
+            onclick="toggleHabitInput()"
+            aria-label="Add a new habit"
+          >
+            + Add Habit
+          </button>
+          <div class="habit-input" id="habit-input" style="display: none">
+            <input type="text" id="new-habit" placeholder="Enter new habit" />
+            <button onclick="addHabit()">Add</button>
+          </div>
+          <div id="habit-list"></div>
+        </section>
+      </main>
+      <section class="stats">
+        <div class="stat">
+          <p>Completion Rate</p>
+          <h2 id="completion-rate">0%</h2>
+        </div>
+        <div class="stat">
+          <p>Total Habits</p>
+          <h2 id="total-habits">0</h2>
+        </div>
+      </section>
+      <div class="stat">
+        <h2>Last Week's Progress</h2>
+        <canvas id="progressChart" width="400" height="200"></canvas>
+        <div id="heatmap"></div>
+        <!-- Habit Selector -->
+        <select id="habit-selector">
+          <option value="all">All Habits</option>
+        </select>
+
+        <!-- Time Range Selector -->
+        <select id="time-range-selector">
+          <option value="last-month">Last Month</option>
+          <option value="last-year">Last Year</option>
+          <option value="overall">Overall</option>
+        </select>
+
+        <!-- Line Chart for Habit Completion -->
+        <div id="line-chart"></div>
+        <!-- Container for Progress Bars -->
+        <div id="habit-progress-bars">
+          <!-- Progress bars will be inserted here -->
+        </div>
+      </div>
+    </div>
+    <!-- main javascript source code  -->
+    <script src="script.js"></script>
+  </body>
+</html>
